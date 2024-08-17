@@ -17,13 +17,13 @@ jobs:
         run: npm install
       - name: Check style
         run: npm run eslint
-      - name: Test
+      - name: Run Jest tests
         run: |
           npm run test
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
