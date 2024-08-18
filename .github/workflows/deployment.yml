@@ -1,6 +1,9 @@
 name: Deployment pipeline
 
 on:
+  push:
+    branches:
+      - master
   pull_request:    
     branches: [master]    
     types: [opened, synchronize]
@@ -34,7 +37,7 @@ jobs:
 
       - name: Build
         run: npm run build
-        
+
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy to Fly
         if: ${{ github.event_name == 'push' }}
